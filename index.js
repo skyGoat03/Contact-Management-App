@@ -4,9 +4,9 @@ let user=[{
   home:"beijing"
 },
           {
-            name="qwert",
-            age=19,
-            home="shanghai"
+            name:"qwert",
+            age:19,
+            home:"shanghai"
           }
 
           ]
