@@ -29,9 +29,9 @@ const server = http.createServer((req, res) => {
     // Once body is fully received
     return req.on("end", () => {
       const parsedBody = Buffer.concat(body).toString(); // example: message=hello
-      const message = parsedBody.split("=")[1]; // extract message value
+      const message = decodeURIComponent(parsedBody.split("=")[1].replace(/\+/g, ' ')); // extract and decode message value
 
-      fs.writeFileSync("message.txt", message); // write to file
+      fs.writeFileSync("message.text", message); // write to file
 
       // Redirect to homepage
       res.statusCode = 302;
@@ -49,4 +49,4 @@ const server = http.createServer((req, res) => {
   res.end();
 });
 
-server.listen(4000);
+server.listen(5000, "0.0.0.0");
