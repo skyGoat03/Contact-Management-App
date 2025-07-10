@@ -1,5 +1,5 @@
 
-
+/*
 let tasks = [] 
 
 function addTask(taskText){
@@ -49,5 +49,26 @@ listTasks(1);
 
 }
 runTasks();
+*/
+
+const person=[{
+  name:"John",
+  age:30,
+  greet(){
+console.log("Hello, "+this.name);
+  }
+}, 
+              {
+                name:"Jane",
+                age:25,
+                Meet(){
+                  console.log("Hi, "+this.name);
+                }
+              }             ];
+
+
+
+const [person1,person2]= person
+console.log(person1)
 
 
