@@ -1,16 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const {loginUser,registerUser,currentUser}=require("../contactControllers/userController.js")
 
-router.post("/register",(req,res)=>{
-  res.json({message:"Register the user"});
-});
+router.post("/register",registerUser);
 
-router.post("/login", (req,res)=>{
-  res.json({message:"login user"})
-});
+router.post("/login", loginUser);
 
-router.post("/current",(req,res)=>{
-  res.json({message:"currentuser info"})
-});
+router.post("/current",currentUser);
 
 module.exports=router;
