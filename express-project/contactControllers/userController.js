@@ -4,12 +4,19 @@ const bcrypt=require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 const loginUser = asyncHandler(async (req,res)=>{
-      const {email,password} = req.body;
-  if(!email||!password){
+      const {email,username,password} = req.body;
+  if((!email && !username)||!password){
     res.status(400);
-    throw new Error("all fields are mandatory")
+    throw new Error("Either username or email and password are mandatory")
   }
-  const user = await User.findOne({email});
+     
+  let check = {};
+  if(email){
+    check = {email:email};
+  } else if(username){ 
+    check = {username:username}
+  }
+  const user = await User.findOne(check);
   console.log(user)
   if(user && await bcrypt.compare(password,user.password)){
     const accessToken =  jwt.sign(
@@ -35,10 +42,16 @@ const registerUser = asyncHandler(async (req,res)=>{
     res.status(400);
     throw new Error("All fields are mandatory");
   }   
-  const userAvailable = await User.findOne({email});
-  if(userAvailable){
+  
+  const emailAvailable = await User.findOne({email});
+  const userNameAvailable = await User.findOne({username})
+  if(userNameAvailable){
     res.status(400);
-    throw new Error("User already registred");
+    throw new Error("Username already registred");
+  }
+  else if(emailAvailable){
+    res.status(400);
+    throw new Error("Email is already registered")
   }
   const hashedPasswords = await bcrypt.hash(password,10);
   console.log("hashed paswords",hashedPasswords);
@@ -49,7 +62,7 @@ const registerUser = asyncHandler(async (req,res)=>{
   })
   console.log(`User created ${user}`)
   if(user){
-    res.status(201).json({_id: user.id,email:user.email});
+    res.status(201).json({_id: user.id,email:user.email,username:user.username});
   }else{
     res.status(400);
     throw new Error("user data not valid");

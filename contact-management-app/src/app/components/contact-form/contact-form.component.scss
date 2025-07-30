@@ -1,0 +1,60 @@
+.contact-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #fafafa;
+  padding: 24px;
+}
+
+.contact-form-card {
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.submit-btn {
+  min-width: 120px;
+}
+
+.cancel-btn {
+  min-width: 100px;
+}
+
+mat-card-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+mat-card-subtitle {
+  color: #666;
+  margin-top: 8px;
+}
+
+mat-form-field {
+  margin-bottom: 8px;
+}

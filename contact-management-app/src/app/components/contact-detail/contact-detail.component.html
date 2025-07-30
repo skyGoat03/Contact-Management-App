@@ -1,0 +1,88 @@
+<div class="contact-detail-container">
+  <div class="detail-header">
+    <button mat-icon-button (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1>Contact Details</h1>
+  </div>
+
+  <div class="detail-content" *ngIf="!loading; else loadingTemplate">
+    <mat-card class="contact-card" *ngIf="contact">
+      <mat-card-header>
+        <mat-card-title>{{ contact.name }}</mat-card-title>
+        <mat-card-subtitle>Contact Information</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="contact-info">
+          <div class="info-item">
+            <mat-icon class="info-icon">person</mat-icon>
+            <div class="info-content">
+              <label>Name</label>
+              <span>{{ contact.name }}</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <mat-icon class="info-icon">email</mat-icon>
+            <div class="info-content">
+              <label>Email</label>
+              <span>{{ contact.email }}</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <mat-icon class="info-icon">phone</mat-icon>
+            <div class="info-content">
+              <label>Phone</label>
+              <span>{{ contact.phone }}</span>
+            </div>
+          </div>
+
+          <div class="info-item" *ngIf="contact.createdAt">
+            <mat-icon class="info-icon">schedule</mat-icon>
+            <div class="info-content">
+              <label>Created</label>
+              <span>{{ contact.createdAt | date:'medium' }}</span>
+            </div>
+          </div>
+
+          <div class="info-item" *ngIf="contact.updatedAt">
+            <mat-icon class="info-icon">update</mat-icon>
+            <div class="info-content">
+              <label>Last Updated</label>
+              <span>{{ contact.updatedAt | date:'medium' }}</span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-card-actions class="card-actions">
+        <button mat-raised-button color="primary" (click)="editContact()">
+          <mat-icon>edit</mat-icon>
+          Edit Contact
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteContact()">
+          <mat-icon>delete</mat-icon>
+          Delete Contact
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="not-found" *ngIf="!contact">
+      <mat-icon>contact_support</mat-icon>
+      <h2>Contact Not Found</h2>
+      <p>The contact you're looking for doesn't exist or has been deleted.</p>
+      <button mat-raised-button color="primary" (click)="goBack()">
+        Back to Contacts
+      </button>
+    </div>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading contact details...</p>
+    </div>
+  </ng-template>
+</div>

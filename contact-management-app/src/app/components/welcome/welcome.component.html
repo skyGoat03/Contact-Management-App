@@ -1,0 +1,28 @@
+<mat-card class="welcome-card">
+  <mat-card-header>
+    <mat-card-title>Welcome, {{ currentUser?.username }}!</mat-card-title>
+    <mat-card-subtitle>Manage your contacts efficiently</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <mat-icon>contacts</mat-icon>
+        <h3>My Contacts</h3>
+        <p>View and manage all your contacts</p>
+        <button mat-raised-button color="primary" (click)="navigateToContacts()">
+          View Contacts
+        </button>
+      </div>
+      
+      <div class="stat-card">
+        <mat-icon>add_circle</mat-icon>
+        <h3>Add New Contact</h3>
+        <p>Create a new contact entry</p>
+        <button mat-raised-button color="accent" (click)="navigateToAddContact()">
+          Add Contact
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
