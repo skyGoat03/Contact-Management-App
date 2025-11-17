@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ContactService {
-  private readonly API_URL = 'https://f626c796-87d3-48fd-b89f-155003dcc8b2.mock.pstmn.io/api';
+  private readonly API_URL = 'http://localhost:5001/api';
 
   constructor(
     private http: HttpClient,

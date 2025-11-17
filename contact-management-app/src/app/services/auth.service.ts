@@ -8,7 +8,7 @@ import { User, LoginRequest, RegisterRequest, AuthResponse, RegisterResponse, Cu
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly API_URL = 'https://f626c796-87d3-48fd-b89f-155003dcc8b2.mock.pstmn.io/api';
+  private readonly API_URL = 'http://localhost:5001/api';
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 

@@ -1,4 +1,5 @@
 const express = require("express");
+const corsMW= require("./middleWare/cors")
 const dotenv=require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 5000;
@@ -8,6 +9,7 @@ const connectDB = require("./db")
 
 connectDB();
 
+app.use(corsMW)
 app.use(express.json());
 app.use('/api/contacts',require("./routes/contactRoutes"));
 app.use('/api/user',require("./routes/userRoutes"));
