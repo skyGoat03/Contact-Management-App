@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class ContactService {
   private readonly API_URL = 'http://localhost:5001/api';
+  private variable = ' ';
 
   constructor(
     private http: HttpClient,
