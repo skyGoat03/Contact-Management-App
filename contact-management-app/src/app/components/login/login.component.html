@@ -9,8 +9,8 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Username or Email Address</mat-label>
-          <input matInput formControlName="usernameOrEmailAddress" placeholder="Enter your username or email">
-          <mat-error *ngIf="loginForm.get('usernameOrEmailAddress')?.hasError('required')">
+          <input matInput formControlName="usernameOrEmailAdd" placeholder="Enter your username or email">
+          <mat-error *ngIf="loginForm.get('usernameOrEmailAdd')?.hasError('required')">
             Username or email is required
           </mat-error>
         </mat-form-field>

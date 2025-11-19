@@ -75,11 +75,11 @@ export class LoginComponent {
       const formValue = this.loginForm.value;
   
       // Determine if input is email or username
-      const isEmail = this.isValidEmail(formValue.usernameOrEmailAddress);
+      const isEmail = this.isValidEmail(formValue.usernameOrEmailAdd);
   
       const loginRequest: LoginRequest = {
-        username: isEmail ? '' : formValue.usernameOrEmailAddress,
-        email: isEmail ? formValue.usernameOrEmailAddress : '',
+        username: isEmail ? '' : formValue.usernameOrEmailAdd,
+        email: isEmail ? formValue.usernameOrEmailAdd : '',
         password: formValue.password
       };
       
