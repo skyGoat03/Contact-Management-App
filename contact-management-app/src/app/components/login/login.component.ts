@@ -36,7 +36,7 @@ export class LoginComponent {
     private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
-      usernameOrEmailAA: ['', [Validators.required]],
+      usernameOrEmailAddress: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(3)]]
     });
   }
@@ -78,8 +78,8 @@ export class LoginComponent {
       const isEmail = this.isValidEmail(formValue.usernameOrEmailAddress);
   
       const loginRequest: LoginRequest = {
-        username: isEmail ? '' : formValue.usernameOrEmailAA,
-        email: isEmail ? formValue.usernameOrEmailAA : '',
+        username: isEmail ? '' : formValue.usernameOrEmailAddress,
+        email: isEmail ? formValue.usernameOrEmailAddress : '',
         password: formValue.password
       };
       
