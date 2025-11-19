@@ -41,34 +41,73 @@ export class LoginComponent {
     });
   }
 
+  // onSubmit(): void {
+  //   if (this.loginForm.valid) {
+  //     this.loading = true;
+  //     const formValue = this.loginForm.value;
+      
+  //     // Determine if input is email or username
+  //     const isEmail = this.isValidEmail(formValue.usernameOrEmail);
+      
+  //     const loginRequest: LoginRequest = {
+  //       username: isEmail ? '' : formValue.usernameOrEmail,
+  //       email: isEmail ? formValue.usernameOrEmail : '',
+  //       password: formValue.password
+  //     };
+      
+  //     this.authService.login(loginRequest).subscribe({
+  //       next: (user: CurrentUserResponse) => {
+  //         this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
+  //         this.router.navigate(['/dashboard']);
+  //       },
+  //       error: (error) => {
+  //         this.loading = false;
+  //         this.snackBar.open('Login failed. Please check your credentials.', 'Close', { duration: 3000 });
+  //         console.error('Login error:', error);
+  //       }
+  //     });
+  //   }
+  // }
+
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.loading = true;
       const formValue = this.loginForm.value;
-      
+  
       // Determine if input is email or username
-      const isEmail = this.isValidEmail(formValue.usernameOrEmail);
-      
+      const isEmail = this.isValidEmail(formValue.usernameOrEmailAddress);
+  
       const loginRequest: LoginRequest = {
-        username: isEmail ? '' : formValue.usernameOrEmail,
+        username: isEmail ? '' : formValue.usernameOrEmailAddress,
         email: isEmail ? formValue.usernameOrEmail : '',
         password: formValue.password
       };
       
-      this.authService.login(loginRequest).subscribe({
-        next: (user: CurrentUserResponse) => {
-          this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
-          this.router.navigate(['/dashboard']);
-        },
-        error: (error) => {
-          this.loading = false;
-          this.snackBar.open('Login failed. Please check your credentials.', 'Close', { duration: 3000 });
-          console.error('Login error:', error);
-        }
-      });
+      console.log("loginRequest:", loginRequest);
+      
+      const validUsername = 'thbs';
+      const validEmail = 'thbs@thbs.com';
+      const validPassword = 'qwe123';
+  
+      const isValidUser =
+        (loginRequest.username?.toLowerCase() === validUsername ||
+         loginRequest.email?.toLowerCase() === validEmail) &&
+        loginRequest.password === validPassword;
+  
+      console.log(isValidUser);
+  
+      if (isValidUser) {
+        this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
+        this.router.navigate(['/dashboard']);
+      } else {
+        this.loading = false;
+        this.snackBar.open('Invalid credentials. Please try again.', 'Close', { duration: 3000 });
+      }
+    } else {
+      this.snackBar.open('Please fill out the form correctly.', 'Close', { duration: 3000 });
     }
   }
-
+  
   private isValidEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
